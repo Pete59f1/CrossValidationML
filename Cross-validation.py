@@ -2,6 +2,7 @@ from sklearn.model_selection import cross_val_score, KFold
 from sklearn.datasets import load_iris
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.linear_model import LogisticRegression
+import numpy as np
 
 # I det første stykke kode her, har vi et datasæt kaldet dataset
 # Vi sætter vores KFold kf til, at splitte 2 gange, og fortæller den ikke, at blande
@@ -12,12 +13,22 @@ kf = KFold(n_splits=2, shuffle=False)
 for train, test in kf.split(dataset):
     print("%s %s" % (train, test))
 
+# X = np.array([[1, 2], [3, 4], [1, 2], [3, 4]])
+# y = np.array([1, 2, 3, 4])
+# kf = KFold(n_splits=4)
+
+# for train_index, test_index in kf.split(X):
+#    X_train, X_test = X[train_index], X[test_index]
+#    y_train, y_test = y[train_index], y[test_index]
+#    print("%s %s | %s %s" % (X_train, X_test, y_train, y_test))
+
 # Nu vil jeg se på hvordan man kan bruge cross-validation til, at vælge den rigtige model
 # Loader iris datasæt
 iris = load_iris()
 X = iris.data
 y = iris.target
 
+print('')
 knn = KNeighborsClassifier()
 
 # Tester det optimale antal n_neighbors for knn
