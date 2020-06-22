@@ -18,8 +18,15 @@ iris = load_iris()
 X = iris.data
 y = iris.target
 
+knn = KNeighborsClassifier()
+
+# Tester det optimale antal n_neighbors for knn
+for i in range(20):
+    knn.n_neighbors = i+1
+    print(cross_val_score(knn, X, y, cv=10, scoring='accuracy').mean())
+
 # Opstiller de to modeller vi vil stille op mod hinanden
-knn = KNeighborsClassifier(n_neighbors=20)
+knn.n_neighbors = 20
 logreg = LogisticRegression()
 
 # Bruger cross_val_score til at få de to modeller nøjagtigheds scoring
@@ -28,9 +35,10 @@ logreg = LogisticRegression()
 # Vi bruge mean() tilsidst for, at vi får svaret med det samme. Uden det skulle vi selv beregne gennemsnittet
 # Kig nederst for, at se hvad jeg mener.
 # Ud fra de svar vi kan vi, så vælge den model der klarede sig bedst.
+print('')
 print(cross_val_score(knn, X, y, cv=10, scoring='accuracy').mean())
 print(cross_val_score(logreg, X, y, cv=10, scoring='accuracy').mean())
 
-scores = cross_val_score(knn, X, y, cv=10, scoring='accuracy')
-print(scores)
-print(scores.mean())
+# scores = cross_val_score(knn, X, y, cv=10, scoring='accuracy')
+# print(scores)
+# print(scores.mean())
