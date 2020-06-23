@@ -15,7 +15,7 @@ for train, test in kf.split(dataset):
 
 # X = np.array([[1, 2], [3, 4], [1, 2], [3, 4]])
 # y = np.array([1, 2, 3, 4])
-# kf = KFold(n_splits=4)
+# kf = KFold(n_splits=2)
 
 # for train_index, test_index in kf.split(X):
 #    X_train, X_test = X[train_index], X[test_index]
